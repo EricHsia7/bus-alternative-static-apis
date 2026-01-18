@@ -59,7 +59,7 @@ async function main() {
         const dirPath = `./dist/${api[0]}`;
         await makeDirectory(dirPath);
         const parsedData = JSON.parse(data);
-        const filePath = `${dirPath}/${api[1]}.gz`;
+        const filePath = `${dirPath}/get${api[1]}.gz`;
         const compressedData = pako.gzip(JSON.stringify(parsedData));
         await fs.promises.writeFile(filePath, Buffer.from(compressedData));
         console.log(`${api[0]}/${api[1]}: successful`);
