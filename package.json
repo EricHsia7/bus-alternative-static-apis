@@ -1,5 +1,4 @@
 {
-  "type": "commonjs",
   "dependencies": {
     "pako": "^2.1.0",
     "gh-pages": "6.3.0"

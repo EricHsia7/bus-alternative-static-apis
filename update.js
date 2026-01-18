@@ -37,7 +37,7 @@ async function fetchData(url) {
   return inflatedData;
 }
 
-export function getAPI(city, api) {
+function getAPI(city, api) {
   const cities = ['blobbus', 'ntpcbus'];
   // blobbus → Taipei City
   // ntpcbus → New Taipei City
