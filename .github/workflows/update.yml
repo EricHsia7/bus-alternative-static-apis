@@ -2,7 +2,8 @@ name: Update
 
 on:
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 0 * * 3'
+    - cron: '0 0 * * 6'
   workflow_dispatch:
 
 jobs:
@@ -17,9 +18,30 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
+    
+      - name: Restore cached dependencies
+        id: restore-cached-dependencies
+        uses: actions/cache/restore@v5
+        with:
+          path: |
+            ./node_modules
+            package-lock.json
+          key: dependencies-${{ runner.os }}-${{ hashFiles('package.json') }}
+          restore-keys: |
+            dependencies-${{ runner.os }}-${{ hashFiles('package.json') }}
 
       - name: Install dependencies
         run: npm install
+      
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache/save@v5
+        if: steps.restore-cached-dependencies.outputs.cache-hit != 'true'
+        with:
+          path: |
+            ./node_modules
+            package-lock.json
+          key: ${{ steps.restore-cached-dependencies.outputs.cache-primary-key }}
       
       - name: Download content
         run: node update.js
