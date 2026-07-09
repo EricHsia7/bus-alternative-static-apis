@@ -31,8 +31,9 @@ jobs:
             dependencies-${{ runner.os }}-${{ hashFiles('package.json') }}
 
       - name: Install dependencies
+        if: steps.restore-cached-dependencies.outputs.cache-hit != 'true'
         run: npm install
-      
+
       - name: Cache dependencies
         id: cache-dependencies
         uses: actions/cache/save@v5
