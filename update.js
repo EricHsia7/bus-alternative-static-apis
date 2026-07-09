@@ -91,22 +91,33 @@ function getAPI(city, api) {
 
 async function main() {
   const cityIndexes = [0, 1];
-  const jsonAPIIndices = [2, 3, 9, 10, 11, 12, 14];
-  const xmlAPIIndices = [15];
+  // static
+  const staticJsonAPIIndices = [2, 3, 9, 10, 11, 12, 14];
+  const staticXmlAPIIndices = [15];
+
+  // dynamic
+  const dynamicJsonAPIIndices = [0, 1, 4, 5, 6, 7, 8];
 
   const list = [];
 
   for (const cityIndex of cityIndexes) {
-    for (const index of jsonAPIIndices) {
+    for (const index of staticJsonAPIIndices) {
       const api = getAPI(cityIndex, index);
       list.push(fetchJSON(api[2], `./dist/${api[0]}`, api[1]));
     }
   }
 
   for (const cityIndex of cityIndexes) {
-    for (const index of xmlAPIIndices) {
+    for (const index of staticXmlAPIIndices) {
       const api = getAPI(cityIndex, index);
       list.push(fetchXML(api[2], `./dist/${api[0]}`, api[1]));
+    }
+  }
+
+  for (const cityIndex of cityIndexes) {
+    for (const index of dynamicJsonAPIIndices) {
+      const api = getAPI(cityIndex, index);
+      list.push(fetchJSON(api[2], `./dist/${api[0]}`, api[1]));
     }
   }
 
