@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "pako": "^2.1.0",
+    "fflate": "0.8.3",
     "gh-pages": "6.3.0"
   }
 }
