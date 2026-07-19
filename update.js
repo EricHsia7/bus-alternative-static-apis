@@ -85,14 +85,14 @@ function getAPI(city, api) {
   const cities = ['blobbus', 'ntpcbus'];
   // blobbus → Taipei City
   // ntpcbus → New Taipei City
-  const buckets = ['BusData', 'BusEvent', 'CarInfo', 'CarUnusual', 'EstimateTime', 'IStop', 'IStopPath', 'OrgPathAttribute', 'PathDetail', 'Provider', 'Route', 'Stop', 'SemiTimeTable', 'StopLocation', 'TimeTable', 'BusRouteFareList'];
+  const buckets = ['BusData', 'BusEvent', 'CarInfo', 'CarUnusual', 'EstimateTime', 'IStop', 'IStopPath', 'OrgPathAttribute', 'PathDetail', 'Provider', 'Route', 'Stop', 'SemiTimeTable', 'StopLocation', 'TimeTable', 'BusRouteFareList', 'BusShape'];
   return [cities[city], buckets[api], `https://tcgbusfs.blob.core.windows.net/${cities[city]}/Get${buckets[api]}.gz?_=${new Date().getTime()}`];
 }
 
 async function main() {
   const cityIndexes = [0, 1];
   // static
-  const staticJsonAPIIndices = [2, 3, 9, 10, 11, 12, 14];
+  const staticJsonAPIIndices = [2, 3, 9, 10, 11, 12, 14, 16];
   const staticXmlAPIIndices = [15];
 
   // dynamic
